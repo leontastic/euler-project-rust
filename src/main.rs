@@ -11,11 +11,13 @@ fn main() {
     println!(" ============================================= ");
     println!("| Project Euler Solutions in Rust, by Leon Li |");
     println!(" ============================================= ");
-    println!("");
     loop {
+        println!("");
         let problem_number = prompt_problem_number();
         let problem = problems::get_problem(&problem_number);
         println!("PROBLEM {}:\n", problem_number);
-        println!("{}", problem.question());
+        println!("{}", problem);
+        println!("SOLUTION FOR PROBLEM {}:\n", problem_number);
+        println!("{}", problem.solve());
     }
 }
