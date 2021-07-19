@@ -1,6 +1,8 @@
+mod parameters;
 mod questions;
 mod solutions;
 
+use parameters::Parameters;
 use std::fmt;
 
 pub enum Problem {
@@ -11,19 +13,15 @@ pub enum Problem {
 
 impl Problem {
     fn question(&self) -> &str {
-        match self {
-            Problem::P1 => questions::Q1,
-            Problem::P2 => questions::Q2,
-            Problem::P3 => questions::Q3,
-        }
+        questions::get_question(self)
+    }
+    fn parameters(&self) -> Parameters {
+        parameters::get_parameters(self)
     }
 
     pub fn solve(&self) -> String {
-        match self {
-            Problem::P1 => solutions::p1::solve(),
-            Problem::P2 => solutions::p2::solve(),
-            Problem::P3 => solutions::p3::solve(),
-        }
+        let solution = solutions::get_solution(self);
+        solution(self.parameters())
     }
 }
 
