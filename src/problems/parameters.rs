@@ -6,6 +6,7 @@ mod p3;
 mod p4;
 mod p5;
 mod p6;
+mod p7;
 
 use p1::PARAMETERS as P1;
 use p2::PARAMETERS as P2;
@@ -13,6 +14,7 @@ use p3::PARAMETERS as P3;
 use p4::PARAMETERS as P4;
 use p5::PARAMETERS as P5;
 use p6::PARAMETERS as P6;
+use p7::PARAMETERS as P7;
 
 pub enum Parameters {
     P1 { max: u64, a: u64, b: u64 },
@@ -21,6 +23,7 @@ pub enum Parameters {
     P4 { digits: u32 },
     P5 { n: u64 },
     P6 { n: u64 },
+    P7 { n: u64 },
 }
 
 pub fn get_parameters(problem: &Problem) -> Parameters {
@@ -31,5 +34,6 @@ pub fn get_parameters(problem: &Problem) -> Parameters {
         Problem::P4 => P4,
         Problem::P5 => P5,
         Problem::P6 => P6,
+        Problem::P7 => P7,
     }
 }

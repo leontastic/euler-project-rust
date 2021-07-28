@@ -8,5 +8,6 @@ pub fn get_question(problem: &Problem) -> &str {
         Problem::P4 => include_str!("questions/p4.txt"),
         Problem::P5 => include_str!("questions/p5.txt"),
         Problem::P6 => include_str!("questions/p6.txt"),
+        Problem::P7 => include_str!("questions/p7.txt"),
     }
 }
