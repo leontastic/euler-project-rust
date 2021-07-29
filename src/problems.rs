@@ -13,6 +13,7 @@ pub enum Problem {
     P5,
     P6,
     P7,
+    P8,
 }
 
 impl Problem {
@@ -44,6 +45,7 @@ pub fn get_problem(number: &u16) -> Problem {
         5 => Problem::P5,
         6 => Problem::P6,
         7 => Problem::P7,
+        8 => Problem::P8,
         _ => panic!("Cannot find problem number {}", number),
     }
 }

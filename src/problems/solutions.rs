@@ -8,6 +8,7 @@ pub mod p4;
 pub mod p5;
 pub mod p6;
 pub mod p7;
+pub mod p8;
 
 pub fn get_solution(problem: &Problem) -> fn(parameters: Parameters) -> String {
     match problem {
@@ -18,5 +19,6 @@ pub fn get_solution(problem: &Problem) -> fn(parameters: Parameters) -> String {
         Problem::P5 => p5::solve,
         Problem::P6 => p6::solve,
         Problem::P7 => p7::solve,
+        Problem::P8 => p8::solve,
     }
 }
