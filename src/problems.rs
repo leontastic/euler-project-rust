@@ -1,51 +1,27 @@
-mod parameters;
-mod questions;
-mod solutions;
+use super::parameters::*;
+use super::solutions::Solve;
 
-use parameters::Parameters;
-use std::fmt;
+pub const PROBLEMS: [Problem; 8] = [
+    Problem(include_str!("questions/p1.txt"), &p1::PARAMETERS),
+    Problem(include_str!("questions/p2.txt"), &p2::PARAMETERS),
+    Problem(include_str!("questions/p3.txt"), &p3::PARAMETERS),
+    Problem(include_str!("questions/p4.txt"), &p4::PARAMETERS),
+    Problem(include_str!("questions/p5.txt"), &p5::PARAMETERS),
+    Problem(include_str!("questions/p6.txt"), &p6::PARAMETERS),
+    Problem(include_str!("questions/p7.txt"), &p7::PARAMETERS),
+    Problem(include_str!("questions/p8.txt"), &p8::PARAMETERS),
+];
 
-pub enum Problem {
-    P1,
-    P2,
-    P3,
-    P4,
-    P5,
-    P6,
-    P7,
-    P8,
-}
+pub struct Problem(&'static str, &'static dyn Solve);
 
-impl Problem {
-    fn question(&self) -> &str {
-        questions::get_question(self)
-    }
-    fn parameters(&self) -> Parameters {
-        parameters::get_parameters(self)
-    }
-
-    pub fn solve(&self) -> String {
-        let solution = solutions::get_solution(self);
-        solution(self.parameters())
+impl Solve for Problem {
+    fn solve(&self) -> Result<Option<String>, &str> {
+        self.1.solve()
     }
 }
 
-impl fmt::Display for Problem {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.question())
-    }
-}
-
-pub fn get_problem(number: &u16) -> Problem {
-    match number {
-        1 => Problem::P1,
-        2 => Problem::P2,
-        3 => Problem::P3,
-        4 => Problem::P4,
-        5 => Problem::P5,
-        6 => Problem::P6,
-        7 => Problem::P7,
-        8 => Problem::P8,
-        _ => panic!("Cannot find problem number {}", number),
+impl std::fmt::Display for Problem {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "{}", self.0)
     }
 }

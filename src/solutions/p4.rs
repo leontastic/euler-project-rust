@@ -1,8 +1,14 @@
-use crate::problems::parameters::Parameters;
+use super::Solve;
 use crate::utils::math::log_10;
 
-pub fn solve(parameters: Parameters) -> String {
-    if let Parameters::P4 { digits } = parameters {
+pub struct Parameters {
+    pub digits: u32,
+}
+
+impl Solve for Parameters {
+    fn solve(&self) -> Result<Option<String>, &str> {
+        let Parameters { digits } = *self;
+
         let upper_limit = u32::pow(10, digits);
         let lower_limit = u32::pow(10, digits - 1);
 
@@ -21,13 +27,11 @@ pub fn solve(parameters: Parameters) -> String {
             }
         }
 
-        if max_palindrome_global == 0 {
-            panic!("No palindromes found")
-        }
-
-        format!("{}", max_palindrome_global)
-    } else {
-        panic!("Invalid parameters")
+        Ok(if max_palindrome_global == 0 {
+            None
+        } else {
+            Some(format!("{}", max_palindrome_global))
+        })
     }
 }
 

@@ -1,6 +1,8 @@
-use crate::problems::parameters::Parameters;
+use super::super::solutions::p8;
 
-const INPUT: &'static str = "\
+pub const PARAMETERS: p8::Parameters = p8::Parameters {
+    n: 13,
+    input: "\
     73167176531330624919225119674426574742355349194934\
     96983520312774506326239578318016984801869478851843\
     85861560789112949495459501737958331952853208805511\
@@ -21,21 +23,5 @@ const INPUT: &'static str = "\
     84580156166097919133875499200524063689912560717606\
     05886116467109405077541002256983155200055935729725\
     71636269561882670428252483600823257530420752963450\
-";
-
-pub fn solve(parameters: Parameters) -> String {
-    if let Parameters::P8 { n } = parameters {
-        let result = (0..INPUT.len() - n as usize)
-            .map(|i| {
-                INPUT[i..i + n as usize]
-                    .chars()
-                    .map(|c| c.to_digit(10).unwrap() as u64)
-                    .fold(1, |product, digit| product * digit)
-            })
-            .max()
-            .unwrap();
-        format!("{}", result)
-    } else {
-        panic!("Invalid parameters")
-    }
-}
+",
+};

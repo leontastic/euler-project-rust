@@ -1,9 +1,15 @@
-use crate::problems::parameters::Parameters;
+use super::Solve;
 use crate::utils::primes::Primes;
 use std::cmp;
 
-pub fn solve(parameters: Parameters) -> String {
-    if let Parameters::P3 { mut n } = parameters {
+pub struct Parameters {
+    pub n: u64,
+}
+
+impl Solve for Parameters {
+    fn solve(&self) -> Result<Option<String>, &str> {
+        let Parameters { mut n } = *self;
+
         let primes = Primes::new();
         let mut max_prime: u64 = 0;
         for prime in primes {
@@ -17,12 +23,11 @@ pub fn solve(parameters: Parameters) -> String {
                 max_prime = prime;
             }
         }
-        if max_prime > 0 {
-            format!("{}", cmp::max(max_prime, n))
+
+        Ok(if max_prime > 0 {
+            Some(format!("{}", cmp::max(max_prime, n)))
         } else {
-            panic!("No prime factors found")
-        }
-    } else {
-        panic!("Invalid parameters")
+            None
+        })
     }
 }

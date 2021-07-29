@@ -1,5 +1,11 @@
-use crate::problems::parameters::Parameters;
+use super::Solve;
 use crate::utils::math::lcm;
+
+pub struct Parameters {
+    pub max: u64,
+    pub a: u64,
+    pub b: u64,
+}
 
 fn summation(n: u64) -> u64 {
     n * (n + 1) / 2
@@ -10,15 +16,15 @@ fn sum_multiples(n: u64, max: u64) -> u64 {
     n * summation(num_multiples)
 }
 
-pub fn solve(parameters: Parameters) -> String {
-    if let Parameters::P1 { max, a, b } = parameters {
+impl Solve for Parameters {
+    fn solve(&self) -> Result<Option<String>, &str> {
+        let Parameters { max, a, b } = *self;
+
         let sum_multiples_of_lcm = sum_multiples(lcm(a, b), max);
         let sum_multiples_of_a = sum_multiples(a, max);
         let sum_multiples_of_b = sum_multiples(b, max);
         let result = sum_multiples_of_a + sum_multiples_of_b - sum_multiples_of_lcm;
 
-        format!("{}", result)
-    } else {
-        panic!("Invalid parameters")
+        Ok(Some(format!("{}", result)))
     }
 }
