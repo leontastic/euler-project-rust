@@ -1,6 +1,6 @@
-use super::super::solutions::p11;
+use super::super::solutions::p011;
 
-pub const PARAMETERS: p11::Parameters = p11::Parameters {
+pub const PARAMETERS: p011::Parameters = p011::Parameters {
     input: [
         [
             08, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 08,

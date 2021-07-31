@@ -2,18 +2,18 @@ use super::parameters::*;
 use super::solutions::Solve;
 
 pub const PROBLEMS: [Problem; 12] = [
-    Problem(include_str!("questions/p1.txt"), &p1::PARAMETERS),
-    Problem(include_str!("questions/p2.txt"), &p2::PARAMETERS),
-    Problem(include_str!("questions/p3.txt"), &p3::PARAMETERS),
-    Problem(include_str!("questions/p4.txt"), &p4::PARAMETERS),
-    Problem(include_str!("questions/p5.txt"), &p5::PARAMETERS),
-    Problem(include_str!("questions/p6.txt"), &p6::PARAMETERS),
-    Problem(include_str!("questions/p7.txt"), &p7::PARAMETERS),
-    Problem(include_str!("questions/p8.txt"), &p8::PARAMETERS),
-    Problem(include_str!("questions/p9.txt"), &p9::PARAMETERS),
-    Problem(include_str!("questions/p10.txt"), &p10::PARAMETERS),
-    Problem(include_str!("questions/p11.txt"), &p11::PARAMETERS),
-    Problem(include_str!("questions/p12.txt"), &p12::PARAMETERS),
+    Problem(include_str!("questions/p001.txt"), &p001::PARAMETERS),
+    Problem(include_str!("questions/p002.txt"), &p002::PARAMETERS),
+    Problem(include_str!("questions/p003.txt"), &p003::PARAMETERS),
+    Problem(include_str!("questions/p004.txt"), &p004::PARAMETERS),
+    Problem(include_str!("questions/p005.txt"), &p005::PARAMETERS),
+    Problem(include_str!("questions/p006.txt"), &p006::PARAMETERS),
+    Problem(include_str!("questions/p007.txt"), &p007::PARAMETERS),
+    Problem(include_str!("questions/p008.txt"), &p008::PARAMETERS),
+    Problem(include_str!("questions/p009.txt"), &p009::PARAMETERS),
+    Problem(include_str!("questions/p010.txt"), &p010::PARAMETERS),
+    Problem(include_str!("questions/p011.txt"), &p011::PARAMETERS),
+    Problem(include_str!("questions/p012.txt"), &p012::PARAMETERS),
 ];
 
 pub struct Problem(&'static str, &'static dyn Solve);

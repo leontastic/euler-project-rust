@@ -1,6 +1,6 @@
-use super::super::solutions::p8;
+use super::super::solutions::p008;
 
-pub const PARAMETERS: p8::Parameters = p8::Parameters {
+pub const PARAMETERS: p008::Parameters = p008::Parameters {
     n: 13,
     input: "\
     73167176531330624919225119674426574742355349194934\
