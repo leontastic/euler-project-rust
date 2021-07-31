@@ -1,4 +1,5 @@
 pub mod big_decimal;
+pub mod collatz;
 pub mod factors;
 pub mod fibonacci;
 pub mod io;
