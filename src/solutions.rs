@@ -10,6 +10,7 @@ pub mod p009;
 pub mod p010;
 pub mod p011;
 pub mod p012;
+pub mod p013;
 
 pub trait Solve {
     fn solve(&self) -> Result<Option<String>, &str> {
