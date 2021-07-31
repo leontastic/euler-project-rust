@@ -31,3 +31,16 @@ impl std::fmt::Display for Problem {
         write!(f, "{}", self.0)
     }
 }
+
+#[test]
+fn all_problems() {
+    PROBLEMS.iter().enumerate().for_each(|(number, problem)| {
+        println!("PROBLEM {}", number + 1);
+        println!("==========\n\n{}", problem);
+        match problem.solve() {
+            Ok(Some(solution)) => println!("SOLUTION FOR PROBLEM {}: {}\n", number, solution),
+            Ok(None) => panic!("Problem {} has no solution", number),
+            Err(err) => panic!("Problem {} errored with: {:?}", number, err),
+        }
+    });
+}
