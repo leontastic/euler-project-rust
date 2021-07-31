@@ -1,7 +1,7 @@
 use super::parameters::*;
 use super::solutions::Solve;
 
-pub const PROBLEMS: [Problem; 14] = [
+pub const PROBLEMS: [Problem; 15] = [
     Problem(include_str!("questions/p001.txt"), &p001::PARAMETERS),
     Problem(include_str!("questions/p002.txt"), &p002::PARAMETERS),
     Problem(include_str!("questions/p003.txt"), &p003::PARAMETERS),
@@ -16,6 +16,7 @@ pub const PROBLEMS: [Problem; 14] = [
     Problem(include_str!("questions/p012.txt"), &p012::PARAMETERS),
     Problem(include_str!("questions/p013.txt"), &p013::PARAMETERS),
     Problem(include_str!("questions/p014.txt"), &p014::PARAMETERS),
+    Problem(include_str!("questions/p015.txt"), &p015::PARAMETERS),
 ];
 
 pub struct Problem(&'static str, &'static dyn Solve);
