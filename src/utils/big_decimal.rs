@@ -3,7 +3,7 @@ use std::fmt::{Display, Formatter, Result};
 use std::iter::Sum;
 use std::ops::{Add, AddAssign, Mul, MulAssign};
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BigDecimal(pub Vec<u8>);
 
 // store decimal digits as vector of u8 ordered from least significant to most significant
@@ -56,28 +56,6 @@ fn display_big_decimal_correctness() {
     );
 }
 
-impl PartialEq for BigDecimal {
-    fn eq(&self, rhs: &Self) -> bool {
-        if self.len() != rhs.len() {
-            return false;
-        }
-
-        let mut place = 0;
-
-        loop {
-            if place >= self.len() {
-                break true;
-            }
-
-            if self.get_digit(place) != rhs.get_digit(place) {
-                break false;
-            }
-
-            place += 1;
-        }
-    }
-}
-
 #[test]
 fn partial_eq_big_decimal_correctness() {
     // implementations must ensure that eq and ne are consistent with each other
@@ -126,8 +104,6 @@ fn partial_eq_big_decimal_correctness() {
             != BigDecimal::from_str("123456789009876543210987654321")
     );
 }
-
-impl Eq for BigDecimal {}
 
 #[test]
 fn eq_big_decimal_correctness() {
