@@ -1,7 +1,7 @@
 use std::cmp::PartialEq;
 use std::fmt::{Display, Formatter, Result};
 use std::iter::Sum;
-use std::ops::{Add, Mul};
+use std::ops::{Add, AddAssign, Mul, MulAssign};
 
 #[derive(Debug)]
 pub struct BigDecimal(pub Vec<u8>);
@@ -191,6 +191,27 @@ fn add_big_decimal_correctness() {
     )
 }
 
+impl AddAssign<BigDecimal> for BigDecimal {
+    fn add_assign(&mut self, other: Self) {
+        *self = self.clone() + other;
+    }
+}
+
+#[test]
+fn add_assign_big_decimal_correctness() {
+    let mut x = BigDecimal::from_str("1");
+    x += BigDecimal::from_str("1");
+    assert_eq!(x, BigDecimal::from_str("2"));
+    x += BigDecimal::from_str("2");
+    assert_eq!(x, BigDecimal::from_str("4"));
+    x += BigDecimal::from_str("3");
+    assert_eq!(x, BigDecimal::from_str("7"));
+
+    let mut y = BigDecimal::from_str("89898989898989898989");
+    y += BigDecimal::from_str("676767676767676767");
+    assert_eq!(y, BigDecimal::from_str("90575757575757575756"))
+}
+
 impl Sum<BigDecimal> for BigDecimal {
     fn sum<I>(iter: I) -> Self
     where
@@ -235,6 +256,12 @@ impl Mul<BigDecimal> for BigDecimal {
                     .sum::<BigDecimal>()
             })
             .sum::<BigDecimal>()
+    }
+}
+
+impl MulAssign<BigDecimal> for BigDecimal {
+    fn mul_assign(&mut self, other: Self) {
+        *self = self.clone() * other;
     }
 }
 
