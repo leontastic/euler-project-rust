@@ -5,7 +5,10 @@ mod utils;
 
 use problems::*;
 use solutions::Solve;
-use utils::io;
+
+use std::env;
+use std::process;
+use std::str::FromStr;
 
 const INTRO: &str = "
 ===============================================
@@ -13,10 +16,7 @@ const INTRO: &str = "
 ===============================================
 ";
 
-fn prompt_problem_number() -> usize {
-    println!("> Enter the problem number you would like to see: ");
-    io::read_natural()
-}
+const USAGE_INSTRUCTIONS: &str = "Usage:\n\n    cargo run <problem number>\n";
 
 fn solve(problem: &Problem) -> String {
     match problem.solve() {
@@ -33,15 +33,20 @@ fn print_problem(problem_number: usize) {
         println!("SOLUTION FOR PROBLEM {}:\n", problem_number);
         println!("{}", solve(problem));
     } else {
-        println!("Could not find problem {}", problem_number);
+        println!("Could not find problem {}\n", problem_number);
     }
 }
 
 fn main() {
     println!("{}", INTRO);
-    loop {
-        println!("");
-        let problem_number = prompt_problem_number();
-        print_problem(problem_number);
-    }
+
+    let problem_number = match env::args().nth(1) {
+        Some(arg) => usize::from_str(&arg).expect("Error parsing problem number"),
+        None => {
+            eprintln!("{}", USAGE_INSTRUCTIONS);
+            process::exit(1)
+        }
+    };
+
+    print_problem(problem_number);
 }
