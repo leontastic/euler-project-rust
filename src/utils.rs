@@ -1,5 +1,6 @@
 pub mod big_decimal;
 pub mod collatz;
+pub mod date;
 pub mod factors;
 pub mod fibonacci;
 pub mod math;
