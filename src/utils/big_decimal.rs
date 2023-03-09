@@ -12,6 +12,39 @@ pub mod sum;
 
 // store decimal digits as vector of u8 ordered from least significant to most significant
 impl BigDecimal {
+    pub fn from_usize(input: usize) -> BigDecimal {
+        BigDecimal::from_be_bytes(
+            input
+                .to_be_bytes()
+                .iter()
+                .cloned()
+                .skip_while(|&byte| byte == 0)
+                .collect(),
+        )
+    }
+
+    pub fn from_be_bytes(bytes: Vec<u8>) -> BigDecimal {
+        let len = bytes.len();
+        let mut result = BigDecimal::from_u8(0);
+        for (index, byte) in bytes.iter().enumerate() {
+            let mut from_byte = BigDecimal::from_u8(*byte);
+            for _ in (index + 1)..len {
+                from_byte *= BigDecimal::from_str("256")
+            }
+            result += from_byte
+        }
+        result
+    }
+
+    pub fn from_u8(input: u8) -> BigDecimal {
+        if input < 10 {
+            BigDecimal(vec![input])
+        } else {
+            BigDecimal::from_u8(input.div_euclid(10)) * BigDecimal::from_str("10")
+                + BigDecimal(vec![input.rem_euclid(10)])
+        }
+    }
+
     pub fn from_str(input: &str) -> BigDecimal {
         BigDecimal(
             input
@@ -32,6 +65,35 @@ impl BigDecimal {
     pub fn len(&self) -> usize {
         self.0.len()
     }
+}
+
+#[test]
+fn from_usize_correctness() {
+    assert_eq!(
+        BigDecimal::from_usize(usize::MAX),
+        BigDecimal::from_str(&format!("{}", usize::MAX))
+    )
+}
+
+#[test]
+fn from_be_bytes_correctness() {
+    assert_eq!(
+        BigDecimal::from_be_bytes(65535u16.to_be_bytes().to_vec()),
+        BigDecimal::from_str("65535")
+    );
+    assert_eq!(
+        BigDecimal::from_be_bytes(u64::MAX.to_be_bytes().to_vec()),
+        BigDecimal::from_str(&format!("{}", u64::MAX))
+    )
+}
+
+#[test]
+fn from_u8_correctness() {
+    assert_eq!(BigDecimal::from_u8(255u8), BigDecimal::from_str("255"));
+    assert_eq!(
+        BigDecimal::from_u8(255u8) * BigDecimal::from_u8(255u8),
+        BigDecimal::from_str("65025")
+    );
 }
 
 #[test]
