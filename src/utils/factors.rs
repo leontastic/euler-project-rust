@@ -1,4 +1,4 @@
-pub fn factorize(n: u64) -> Vec<u64> {
+pub fn factorize(n: usize) -> Vec<usize> {
     let mut factors_low = Vec::new();
     let mut factors_high = Vec::new();
     let mut i = 1;

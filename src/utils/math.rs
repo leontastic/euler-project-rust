@@ -1,4 +1,4 @@
-pub fn gcd(a: u64, b: u64) -> u64 {
+pub fn gcd(a: usize, b: usize) -> usize {
     if b == 0 {
         a
     } else {
@@ -6,7 +6,7 @@ pub fn gcd(a: u64, b: u64) -> u64 {
     }
 }
 
-pub fn lcm(a: u64, b: u64) -> u64 {
+pub fn lcm(a: usize, b: usize) -> usize {
     a * b / gcd(a, b)
 }
 

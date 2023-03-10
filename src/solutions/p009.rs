@@ -1,7 +1,7 @@
 use super::Solve;
 
 pub struct Parameters {
-    pub n: u64,
+    pub n: usize,
 }
 
 impl Solve for Parameters {

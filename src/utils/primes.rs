@@ -1,15 +1,15 @@
-pub struct Primes(Vec<u64>);
+pub struct Primes(Vec<usize>);
 
 impl Primes {
     pub fn new() -> Primes {
-        let primes = Vec::<u64>::new();
+        let primes = Vec::<usize>::new();
         Primes(primes)
     }
 }
 
 impl Iterator for Primes {
-    type Item = u64;
-    fn next(&mut self) -> Option<u64> {
+    type Item = usize;
+    fn next(&mut self) -> Option<usize> {
         let primes = &self.0;
         if let Some(last) = primes.last() {
             let mut n = last + 2;
@@ -25,7 +25,7 @@ impl Iterator for Primes {
     }
 }
 
-fn has_factor(n: u64, candidates: &Vec<u64>) -> bool {
+fn has_factor(n: usize, candidates: &Vec<usize>) -> bool {
     candidates
         .into_iter()
         .take_while(|&candidate| n >= candidate * candidate)

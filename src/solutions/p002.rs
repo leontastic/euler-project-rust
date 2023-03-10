@@ -1,9 +1,9 @@
 use super::Solve;
 
 pub struct Parameters {
-    pub s1: u64,
-    pub s2: u64,
-    pub max: u64,
+    pub s1: usize,
+    pub s2: usize,
+    pub max: usize,
 }
 
 use crate::utils::fibonacci::Fibonacci;
@@ -16,8 +16,8 @@ impl Solve for Parameters {
         let even_terms = fibonacci
             .take_while(|term| term <= &max)
             .filter(|term| term % 2 == 0)
-            .collect::<Vec<u64>>();
-        let sum = even_terms.iter().sum::<u64>();
+            .collect::<Vec<usize>>();
+        let sum = even_terms.iter().sum::<usize>();
 
         Ok(Some(format!("{}", sum)))
     }

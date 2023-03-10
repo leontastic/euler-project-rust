@@ -1,7 +1,7 @@
 use super::Solve;
 
 pub struct Parameters {
-    pub n: u64,
+    pub n: usize,
     pub input: &'static str,
 }
 
@@ -13,7 +13,7 @@ impl Solve for Parameters {
             .map(|i| {
                 input[i..i + n as usize]
                     .chars()
-                    .map(|c| c.to_digit(10).unwrap() as u64)
+                    .map(|c| c.to_digit(10).unwrap() as usize)
                     .fold(1, |product, digit| product * digit)
             })
             .max()

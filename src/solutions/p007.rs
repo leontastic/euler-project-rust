@@ -2,7 +2,7 @@ use super::Solve;
 use crate::utils::primes::Primes;
 
 pub struct Parameters {
-    pub n: u64,
+    pub n: usize,
 }
 
 impl Solve for Parameters {

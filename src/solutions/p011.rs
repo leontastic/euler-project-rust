@@ -1,12 +1,12 @@
 use super::Solve;
 
-pub type Grid20x20 = [[u64; 20]; 20];
+pub type Grid20x20 = [[usize; 20]; 20];
 
 pub struct Parameters {
     pub input: Grid20x20,
 }
 
-type Line = [u64; 4];
+type Line = [usize; 4];
 
 fn horizontal4(g: Grid20x20, x: usize, y: usize) -> Line {
     [g[y][x], g[y][x + 1], g[y][x + 2], g[y][x + 3]]
@@ -24,11 +24,11 @@ fn descending4(g: Grid20x20, x: usize, y: usize) -> Line {
     [g[y][x], g[y + 1][x + 1], g[y + 2][x + 2], g[y + 3][x + 3]]
 }
 
-fn product4(input: Line) -> u64 {
+fn product4(input: Line) -> usize {
     input.iter().product()
 }
 
-fn max_product4(g: Grid20x20, x: usize, y: usize, f: fn(Grid20x20, usize, usize) -> Line) -> u64 {
+fn max_product4(g: Grid20x20, x: usize, y: usize, f: fn(Grid20x20, usize, usize) -> Line) -> usize {
     (0..y)
         .map(|y| (0..x).map(|x| f(g, x, y)).map(product4).max().unwrap())
         .max()

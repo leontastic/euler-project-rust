@@ -2,16 +2,16 @@ use super::Solve;
 use crate::utils::math::lcm;
 
 pub struct Parameters {
-    pub max: u64,
-    pub a: u64,
-    pub b: u64,
+    pub max: usize,
+    pub a: usize,
+    pub b: usize,
 }
 
-fn summation(n: u64) -> u64 {
+fn summation(n: usize) -> usize {
     n * (n + 1) / 2
 }
 
-fn sum_multiples(n: u64, max: u64) -> u64 {
+fn sum_multiples(n: usize, max: usize) -> usize {
     let num_multiples = (max - 1) / n;
     n * summation(num_multiples)
 }

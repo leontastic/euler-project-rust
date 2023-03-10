@@ -1,4 +1,4 @@
-pub struct Pascal(Vec<u64>);
+pub struct Pascal(Vec<usize>);
 
 impl Pascal {
     pub fn new() -> Self {
@@ -7,14 +7,14 @@ impl Pascal {
 }
 
 impl Iterator for Pascal {
-    type Item = Vec<u64>;
-    fn next(&mut self) -> Option<Vec<u64>> {
+    type Item = Vec<usize>;
+    fn next(&mut self) -> Option<Vec<usize>> {
         if self.0.len() <= 1 {
             self.0.push(1);
         } else {
             let new_row = (1..self.0.len())
                 .map(|i| self.0[i - 1] + self.0[i])
-                .collect::<Vec<u64>>();
+                .collect::<Vec<usize>>();
             let new_row = [vec![1], new_row, vec![1]].concat();
             self.0 = new_row;
         }
@@ -26,7 +26,7 @@ impl Iterator for Pascal {
 #[test]
 fn pascal_correctness() {
     let pascal = Pascal::new();
-    let cases: [Vec<u64>; 10] = [
+    let cases: [Vec<usize>; 10] = [
         vec![1],
         vec![1, 1],
         vec![1, 2, 1],

@@ -3,7 +3,7 @@ use crate::utils::primes::Primes;
 use std::cmp;
 
 pub struct Parameters {
-    pub n: u64,
+    pub n: usize,
 }
 
 impl Solve for Parameters {
@@ -11,7 +11,7 @@ impl Solve for Parameters {
         let Parameters { mut n } = *self;
 
         let primes = Primes::new();
-        let mut max_prime: u64 = 0;
+        let mut max_prime: usize = 0;
         for prime in primes {
             if prime * prime > n {
                 break;

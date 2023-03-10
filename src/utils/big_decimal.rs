@@ -82,8 +82,8 @@ fn from_be_bytes_correctness() {
         BigDecimal::from_str("65535")
     );
     assert_eq!(
-        BigDecimal::from_be_bytes(u64::MAX.to_be_bytes().to_vec()),
-        BigDecimal::from_str(&format!("{}", u64::MAX))
+        BigDecimal::from_be_bytes(usize::MAX.to_be_bytes().to_vec()),
+        BigDecimal::from_str(&format!("{}", usize::MAX))
     )
 }
 
