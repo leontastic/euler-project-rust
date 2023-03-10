@@ -1,17 +1,19 @@
-pub struct Fibonacci(usize, usize);
+use std::ops::Add;
 
-impl Fibonacci {
-    pub fn new(s1: usize, s2: usize) -> Fibonacci {
+pub struct Fibonacci<T: Add<Output = T> + Clone>(T, T);
+
+impl<T: Add<Output = T> + Clone> Fibonacci<T> {
+    pub fn new(s1: T, s2: T) -> Fibonacci<T> {
         Fibonacci(s1, s2)
     }
 }
 
-impl Iterator for Fibonacci {
-    type Item = usize;
-    fn next(&mut self) -> Option<usize> {
-        let next = self.0 + self.1;
-        self.0 = self.1;
+impl<T: Add<Output = T> + Clone> Iterator for Fibonacci<T> {
+    type Item = T;
+    fn next(&mut self) -> Option<T> {
+        let next = self.0.clone() + self.1.clone();
+        self.0 = self.1.clone();
         self.1 = next;
-        Some(self.0)
+        Some(self.0.clone())
     }
 }
