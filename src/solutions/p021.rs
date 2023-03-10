@@ -1,4 +1,4 @@
-use crate::utils::factors::factorize;
+use crate::utils::factors::factorize_proper;
 
 use super::Solve;
 
@@ -7,9 +7,7 @@ pub struct Parameters {
 }
 
 fn sum_of_proper_divisors(n: usize) -> usize {
-    let mut factors = factorize(n);
-    factors.pop(); // last factor is always equal to the input
-    factors.iter().sum()
+    factorize_proper(n).iter().sum()
 }
 
 fn is_amicable(a: usize) -> bool {

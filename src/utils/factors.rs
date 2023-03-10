@@ -23,6 +23,12 @@ pub fn factorize(n: usize) -> Vec<usize> {
     factors
 }
 
+pub fn factorize_proper(n: usize) -> Vec<usize> {
+    let mut factors = factorize(n);
+    factors.pop();
+    factors
+}
+
 #[test]
 fn factorize_correctness() {
     let correct_factors = [
